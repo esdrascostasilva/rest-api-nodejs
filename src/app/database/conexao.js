@@ -1,4 +1,4 @@
-import mysql from "mysql";
+import mysql from "mysql"
 
 const conexao = mysql.createConnection({
   host: "localhost",
@@ -13,7 +13,7 @@ conexao.connect()
 /**
  * Executa uma instrucao sql com ou sem valores como parametro
  * @param {string} sql instrucao sql a ser executada
- * @param {string=id / [selecao,id]} valores passados para o sql
+ * @param {string=id | [selecao, id]} valores passados para o sql
  * @param {string} mensagemReject mensagem a ser exibida
  * @returns  objeto da Promisse
  */

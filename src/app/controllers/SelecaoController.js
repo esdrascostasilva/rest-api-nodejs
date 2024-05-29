@@ -1,4 +1,4 @@
-import SelecaoRepository from "../repositories/SelecaoRepository.js";
+import SelecaoRepository from "../repositories/SelecaoRepository.js"
 
 class SelecaoController 
 {
@@ -16,20 +16,23 @@ class SelecaoController
     response.json(row)
   }
 
-  async store(request, response) {
+  async store(request, response)
+  {
     const selecao = request.body;
     const row = await SelecaoRepository.create(selecao)
     response.json(row)
   }
 
-  async update(request, response) {
+  async update(request, response)
+  {
     const id = request.params.id;
     const selecao = request.body;
     const row  = await SelecaoRepository.update(selecao, id)
     response.json(row)
   }
 
-  async delete(request, response) {
+  async delete(request, response)
+  {
     const id = request.params.id;
     const row = await SelecaoRepository.delete(id)
     response.json(row)
