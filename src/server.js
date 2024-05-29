@@ -1,4 +1,4 @@
-import app from './src/app.js'
+import app from './app.js'
 
 // defino uma porta para roda ro meu projeto no meu localhost. 3000 é padrao
 // Por padrao, nomes de const em letras maiusculas: PORT, PI, ...
