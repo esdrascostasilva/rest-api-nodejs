@@ -1,7 +1,5 @@
 import conexao from "../database/conexao.js";
 
-conexao.connect();
-
 class SelecaoRepository
 {
   
