@@ -1,76 +1,39 @@
-import conexao from "../database/conexao.js"
+import SelecaoRepository from "../repositories/SelecaoRepository.js";
 
-conexao.connect()
-
-class SelecaoController
+class SelecaoController 
 {
-    index(request, response)
-    {
-        const SQL = "SELECT * FROM selecoes;"
-        conexao.query(SQL, (erro, result) => 
-        {
-          if(erro)
-            response.status(404).json({ 'erro': erro })
-          else
-            response.status(200).json(result)
-        })
-    }
 
-    show(request, response)
-    {
-        const id = request.params.id;
-        const SQL = "SELECT * FROM selecoes WHERE id=?;"
-        conexao.query(SQL, id, (erro, result) => 
-        {
-          const linha = result[0]
-          if(erro)
-            response.status(404).json({ 'erro': erro })
-          else
-            response.status(200).json(linha)
-        })
-    }
+  async index(request, response) 
+  {
+    const row = await SelecaoRepository.findAll();
+    response.json(row);
+  }
 
-    store(request, response) 
-    {
-        const selecao = request.body
-        const SQL = "INSERT INTO selecoes SET ?;"
-        conexao.query(SQL, selecao, (erro, result) => 
-        {
-          if(erro)
-            response.status(404).json({ 'erro': erro })
-          else
-            response.status(201).json(result)
-        })
-    }
+  async show(request, response) 
+  {
+    const id = request.params.id
+    const row = await SelecaoRepository.findById(id)
+    response.json(row)
+  }
 
-    update(request, response) 
-    {
-        const id = request.params.id;
-        const selecao = request.body
-        const SQL = "UPDATE selecoes SET ? WHERE id=?;"
-        conexao.query(SQL, [selecao, id], (erro, result) => 
-        {
-          if(erro)
-            response.status(404).json({ 'erro': erro })
-          else
-            response.status(200).json(result)
-        })
-    }
+  async store(request, response) {
+    const selecao = request.body;
+    const row = await SelecaoRepository.create(selecao)
+    response.json(row)
+  }
 
-    delete(request, response) 
-    {
-        const id = request.params.id;
-        const selecao = request.body
-        const SQL = "UPDATE selecoes SET ? WHERE id=?;"
-        conexao.query(SQL, [selecao, id], (erro, result) => 
-        {
-          if(erro)
-            response.status(404).json({ 'erro': erro })
-          else
-            response.status(200).json(result)
-        })
-    }
+  async update(request, response) {
+    const id = request.params.id;
+    const selecao = request.body;
+    const row  = await SelecaoRepository.update(selecao, id)
+    response.json(row)
+  }
+
+  async delete(request, response) {
+    const id = request.params.id;
+    const row = await SelecaoRepository.delete(id)
+    response.json(row)
+  }
 }
 
-// padrao Singleton
 export default new SelecaoController()

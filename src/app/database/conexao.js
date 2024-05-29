@@ -1,13 +1,13 @@
-import mysql from 'mysql'
+import mysql from "mysql";
 
 const CONEXAO = mysql.createConnection({
-    host: 'localhost',
-    port: '3306',
-    user: 'root',
-    password: 'root',
-    database: 'dbcopa'
-})
+  host: "localhost",
+  port: "3306",
+  user: "root",
+  password: "root",
+  database: "dbcopa",
+});
 
 //CONEXAO.connect()
 
-export default CONEXAO
+export default CONEXAO;
